@@ -1,10 +1,7 @@
 #
-# @lc app=leetcode id=13 lang=python3
+# My solution with no help
 #
-# [13] Roman to Integer
 #
-
-
 class Solution:
     def romanToInt(self, s: str) -> int:
         # check if input is not correct
@@ -60,8 +57,40 @@ class Solution:
             if(s[i] == "M"):
                 x += 1000
         
-        return x;
+        return x;      
 
-        
-# txt = "MCMXCIV"
-# print(Solution().romanToInt(txt))
+
+#
+# LeetCode Answer
+#
+class Solution:
+    def romanToInt(self, s: str) -> int:
+
+        total = 0
+        #creating a dict is better than the if statements I did
+        theDict = {"I":1,"V":5,"X":10,"L":50,"C":100,"D":500,"M":1000}
+
+        # add all integers (even the irregular ones)
+        for i in s:
+            total += theDict[i]
+
+        # now, we remove the amount necessery to make the sum right
+        # this is smart I admit my stupidity :/
+
+        # Example: IV will be added as 6 and we want 4, so just subtract 2!
+        if "IV" in s:
+            total -= 2
+        # 11 will be added and we need it to be 9 , so just subtract 2... and so on
+        if "IX" in s:
+            total -= 2
+        if "XL" in s:
+            total -= 20
+        if "XC" in s:
+            total -= 20
+        if "CD" in s:
+            total -= 200
+        if "CM" in s:
+            total -= 200
+
+
+        return total
